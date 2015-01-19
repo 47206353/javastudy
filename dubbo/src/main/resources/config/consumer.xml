@@ -8,9 +8,9 @@
         http://code.alibabatech.com/schema/dubbo/dubbo.xsd
         ">
     <dubbo:application name="hello-world-app" />
-    <dubbo:registry  protocol="zookeeper" address="10.125.195.174:2181" />
+ <!--   <dubbo:registry  protocol="zookeeper" address="10.125.195.174:2181" />-->
     <dubbo:protocol name="dubbo" port="20880" />
     <dubbo:service interface="demo.service.DemoService"
                    ref="demoService" />       <!-- 和本地bean一样实现服务 -->
-    <bean id="demoService" class="demo.service.DemoServiceImpl" />
+    <bean id="demoService" class="com.ws.ami.dubbo.DemoServiceImpl" />
 </beans>
