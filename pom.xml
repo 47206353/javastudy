@@ -12,6 +12,7 @@
         <module>concurent</module>
         <module>concurrent</module>
         <module>nio</module>
+        <module>dubbo</module>
     </modules>
     <packaging>pom</packaging>
 
