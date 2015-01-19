@@ -1,0 +1,19 @@
+
+
+/*创建学生表*/
+CREATE TABLE student(
+id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name varchar(10) NOT NULL,/*姓名*/
+gender char(1) NOT NULL,/*性别*/
+major varchar(20) NOT NULL,/*专业*/
+grade char(4) NOT NULL/*年级*/
+);
+/*授予courseman用户访问courseman数据库的全部权限。
+为方便起见，用户名与数据库同名。该用户若不存在则被
+创建，密码为abc123*/
+grant all privileges on courseman.* to courseman@'%'
+identified by 'abc123';
+flush privileges;
+/*添加第一条记录*/
+insert into student(name, gender, major, grade)
+values('李林','男','计算机科学与技术','2011');

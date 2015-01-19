@@ -1,0 +1,35 @@
+Drop TABLE IF EXISTS `article`;
+Create TABLE `article` (
+  `id` int(11) NOT NULL auto_increment,
+  `userid` int(11) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `content` text NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+
+drop table  if exists test;
+create table test(
+test_id varchar(30) not null ,
+test_text varchar(50),
+primary key(test_id)
+) ENGINE = InnoDB;
+
+DROP TABLE IF EXISTS `blog`;
+CREATE TABLE `blog` (
+  `id` int(10) NOT NULL auto_increment,
+  `title` varchar(200) NOT NULL,
+  `date` varchar(50) NOT NULL,
+  `authername` varchar(15) NOT NULL,
+  `content` varchar(500) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL auto_increment,
+  `userName` varchar(50) default NULL,
+  `userAge` int(11) default NULL,
+  `userAddress` varchar(200) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ws.ami.persistence.mapper.TestMapper">
+    <resultMap id="getByTestText" type="TestBean">
+        <id property="id" column="test_id" javaType="string" jdbcType="VARCHAR" />
+        <result property="testText" column="test_text" javaType="string" jdbcType="VARCHAR" />
+    </resultMap>
+</mapper>
