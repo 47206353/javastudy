@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:spring/spring-mybatis-db.xml")
+@ContextConfiguration(locations = "classpath:springIntegration/spring-mybatis-db.xml")
 public class TestDaotest {
 
     @Autowired

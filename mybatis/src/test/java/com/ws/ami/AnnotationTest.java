@@ -20,7 +20,7 @@ import java.util.List;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:spring/spring-mybatis-db.xml")
+@ContextConfiguration(locations = "classpath:springIntegration/spring-mybatis-db.xml")
 public class AnnotationTest {
 
 

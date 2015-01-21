@@ -1,9 +1,13 @@
-package com.ws.ami.first;
+package com.ws.ami.springIntegration;
 
+import com.ws.ami.first.Student;
+import com.ws.ami.first.StudentMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.Reader;
 
@@ -13,8 +17,15 @@ import java.io.Reader;
  */
 public class TestMyBatis {
 
+    private static ApplicationContext ctx;
 
-    public static void main(String[] args) throws Exception {
+    static {
+//在类路径下寻找resources/beans.xml文件
+        ctx = new ClassPathXmlApplicationContext("springIntegration/spring-mybatis-db.xml");
+    }
+
+
+   /* public static void main(String[] args) throws Exception {
 
 
         select();
@@ -47,14 +58,14 @@ public class TestMyBatis {
 
         SqlSession sqlSession = getSession();
         StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
-        Student student = mapper.getById(1);
+        com.ws.ami.first.Student student = mapper.getById(1);
         sqlSession.close();
     }
 
 
     private static void add() {
         SqlSession sqlSession = getSession();
-        Student student = new Student();
+        com.ws.ami.first.Student student = new Student();
         student.setName("陈一斌");
         student.setGender("男");
         student.setMajor("计算机科学与技术");
@@ -67,5 +78,5 @@ public class TestMyBatis {
         System.out.println("数据库生成的ID： "
                 + student.getId());
         sqlSession.close();
-    }
+    }*/
 }
