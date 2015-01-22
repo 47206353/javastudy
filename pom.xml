@@ -13,6 +13,7 @@
         <module>concurrent</module>
         <module>nio</module>
         <module>dubbo</module>
+        <module>common</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -26,6 +27,8 @@
         <mybatis.version>3.1.1</mybatis.version>
         <mysql.version>5.1.15</mysql.version>
         <mybatis-spring.version>1.1.1</mybatis-spring.version>
+        <lombok.version>0.11.4</lombok.version>
+        <commons-lang3.version>3.1</commons-lang3.version>
     </properties>
 
     <dependencies>
@@ -120,5 +123,30 @@
             <version>0.9.1.2</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.9.2</version>
+        </dependency>
     </dependencies>
 </project>
