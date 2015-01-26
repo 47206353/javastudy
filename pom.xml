@@ -14,6 +14,7 @@
         <module>nio</module>
         <module>dubbo</module>
         <module>common</module>
+        <module>transaction</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -147,6 +148,17 @@
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
             <version>1.9.2</version>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-dbutils</groupId>
+            <artifactId>commons-dbutils</artifactId>
+            <version>1.6</version>
         </dependency>
     </dependencies>
 </project>

@@ -4,7 +4,7 @@ package com.ws.ami.common;
 import org.apache.commons.beanutils.BeanUtils;
 
 /**
- * 属性拷贝类：拷贝一个类的属性到另外一个目标类
+ * 属性拷贝类：拷贝一个类的属性到另外一个目标类.可以减少set方法
  * Created by hp on 2015/1/22.
  */
 public class PropertiesCopy {
@@ -40,6 +40,11 @@ public class PropertiesCopy {
         dog.setAnimalMouth(1);
         dog.setAnimalName("animalName");
         TargetDog tdog = new TargetDog();
-        BeanUtils.copyProperties(tdog,dog );
+      // BeanUtils.copyProperties(tdog, dog);
+
+       String a =  BeanUtils.getProperty(tdog, "dogName");
+
+
+
     }
 }
