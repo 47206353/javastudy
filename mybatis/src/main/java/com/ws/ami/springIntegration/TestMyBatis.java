@@ -26,11 +26,12 @@ public class TestMyBatis {
         StudentMapper mapper =
                 (StudentMapper)ctx.getBean("studentMapper");
         Student student = new Student();
+        student.setId(123);
         student.setName("李林");
         student.setGender("男");
         student.setMajor("计算机科学与技术");
         student.setGrade("2011");
-        Student student1 = mapper.insert(student);
+        Student student1 = mapper.add(student);
 
     }
 }

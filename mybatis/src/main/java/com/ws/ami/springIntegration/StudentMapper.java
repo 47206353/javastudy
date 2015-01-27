@@ -8,7 +8,7 @@ package com.ws.ami.springIntegration;
 public interface StudentMapper {
     public Student getById(int id);
 
-    public Student insert(Student student);
+    public Student add(Student student);
 
 
     public void update(Student student);

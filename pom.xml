@@ -15,6 +15,7 @@
         <module>dubbo</module>
         <module>common</module>
         <module>transaction</module>
+        <module>designPattern</module>
     </modules>
     <packaging>pom</packaging>
 

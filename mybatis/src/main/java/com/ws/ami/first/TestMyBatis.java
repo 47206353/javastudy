@@ -61,7 +61,7 @@ public class TestMyBatis {
         student.setGrade("2011");
         StudentMapper mapper =
                 sqlSession.getMapper(StudentMapper.class);
-        //mapper.add(student);
+        mapper.insert(student);
 //提交事务，否则不会实际添加到数据库中
         sqlSession.commit();
         System.out.println("数据库生成的ID： "
