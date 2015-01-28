@@ -1,4 +1,4 @@
-package com.ws.ami.common;
+package com.ws.ami.common.propertiescopy;
 
 
 import org.apache.commons.beanutils.BeanUtils;

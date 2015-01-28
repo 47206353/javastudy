@@ -1,4 +1,4 @@
-package com.ws.ami.common;
+package com.ws.ami.common.propertiescopy;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,13 +6,13 @@ import lombok.Setter;
 /**
  * Created by hp on 2015/1/22.
  */
-public class Dog extends Animal{
+public class TargetAnimal {
 
 
     @Setter
     @Getter
-    private int dogMouth;
+    private int animalMouth;
     @Setter
     @Getter
-    private String dogName ;
+    private String animalName ;
 }

@@ -1,4 +1,4 @@
-package com.ws.ami.common;
+package com.ws.ami.common.propertiescopy;
 
 import lombok.Getter;
 import lombok.Setter;
