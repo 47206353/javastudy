@@ -29,7 +29,8 @@ public class OverwriteTest {
 
         OverwriteTest overwriteTest = new OverwriteTest();
         Animal p = new Person();
-        overwriteTest.say(p);
+        p.say();
+       // overwriteTest.say(p);
 
     }
 }
