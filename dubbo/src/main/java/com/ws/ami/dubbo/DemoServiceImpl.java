@@ -5,7 +5,9 @@ package com.ws.ami.dubbo;
  */
 public class DemoServiceImpl implements DemoService{
     @Override
-    public void sayHello() {
+    public String sayHello() {
+
         System.out.println("hello 00!");
+        return  "hello";
     }
 }
