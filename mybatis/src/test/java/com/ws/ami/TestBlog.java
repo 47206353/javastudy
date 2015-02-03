@@ -7,6 +7,6 @@ public class TestBlog {
 
 
     public void main() {
-    
+
     }
 }
