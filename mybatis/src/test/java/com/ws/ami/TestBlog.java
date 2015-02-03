@@ -6,5 +6,7 @@ package com.ws.ami;
 public class TestBlog {
 
 
-
+    public void main() {
+    
+    }
 }
