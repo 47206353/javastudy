@@ -1,4 +1,4 @@
-package com.ws.ami.design;
+package com.ws.ami.design.proxy;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -19,16 +19,18 @@ public class MyProxy implements InvocationHandler {
     }*/
 
 
-    public  Object factory(Object obj) {
+    public Object factory(Object obj) {
 
         this.target = obj;
-       return Proxy.newProxyInstance(obj.getClass().getClassLoader(), obj.getClass().getInterfaces(), this);
+        return Proxy.newProxyInstance(obj.getClass().getClassLoader(), obj.getClass().getInterfaces(), this);
+
 
     }
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         System.out.println("before calling");
+        java.lang.Class<?>[] parameter = method.getParameterTypes();
         Object o = method.invoke(target, args);
         System.out.println("after calling");
         return o;

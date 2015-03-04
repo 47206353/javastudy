@@ -16,5 +16,11 @@ public class DubboComsumeDemo {
         DemoService demoService = (DemoService) factory.getBean("demoService");
         demoService.sayHello();
 
+
+
+
     }
+
+
+
 }
