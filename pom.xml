@@ -18,6 +18,7 @@
         <module>designPattern</module>
         <module>rpc</module>
         <module>lombok</module>
+        <module>integeration</module>
     </modules>
     <packaging>pom</packaging>
 

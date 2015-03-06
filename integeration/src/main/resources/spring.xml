@@ -1,0 +1,46 @@
+<beans:beans xmlns="http://www.springframework.org/schema/integration"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:context="http://www.springframework.org/schema/context"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://www.springframework.org/schema/integration
+        http://www.springframework.org/schema/integration/spring-integration-1.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+    <!-- 启动Message bus 消息服务总线 支持四个属性 
+            auto-startup[boolean是否自动启动 default=true]如果设置false，则需要手动调用applicationContext.start()方法
+            auto-create-channels[boolean是否自动注册MessageChannel default=false]，如果使用的MessagChannle不存在
+            error-channel 设置错误时信息发送的MessageChannle,如果不设置，则使用DefaultErrorChannel
+            dispatcher-pool-size 使用的启动线程数，默认为10-->
+    <message-bus/>
+    <!-- 启动支持元数据标记 -->
+    <annotation-driven/>
+    <!-- 设置 @Component标识的元数据扫描包(package) -->
+    <context:component-scan base-package="org.springframework.integration"/>
+
+    <!-- 下面启动了四个 MessageChannel服务 处理接收发送端发过来的消息和把消息流转到消息的消费端 -->
+    <!-- 属性说明： capacity 消息最大容量默认为100 publish-subscribe是否是发布订阅模式，默认为否
+                                    id bean的id名称 datatype ？ -->
+    <channel id="orders"/> <!-- 订单Channel -->
+    <channel id="drinks"/> <!-- 饮料订单Channel，处理饮料的类别 -->
+    <channel id="coldDrinks"/> <!-- 冷饮生产Channel -->
+    <channel id="hotDrinks"/> <!-- 热饮生产Channel -->
+
+    <!-- 消息处理终端 接收 channel coldDrinks的消息后，执行barista.prepareColdDrink方法 生产冷饮 -->
+    <!-- 属性说明： input-channel 接收消息的Channel必须 default-output-channel设置默认回复消息Channel
+                                    handler-ref 引用bean的id名称 handler-method Handler处理方法名(参数类型必须与发送消息的payLoad使用的一致)
+                                    error-handler设置错误时信息发送的MessageChannle   reply-handler 消息回复的Channel -->
+    <endpoint input-channel="coldDrinks" handler-ref="barista"
+              handler-method="prepareColdDrink"/>
+
+    <!-- 消息处理终端 接收 channel hotDrinks的消息后，执行barista.prepareHotDrink方法 生产热饮 -->
+    <endpoint input-channel="hotDrinks" handler-ref="barista"
+              handler-method="prepareHotDrink"/>
+
+    <!-- 定义一个启动下定单操作的bean，它通过 channel orders下定单 -->
+    <beans:bean id="cafe" class="org.springframework.integration.samples.cafe.Cafe">
+        <beans:property name="orderChannel" ref="orders"/>
+    </beans:bean>
+</beans:beans>
