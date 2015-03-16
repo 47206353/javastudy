@@ -19,6 +19,8 @@
         <module>rpc</module>
         <module>lombok</module>
         <module>integeration</module>
+        <module>rabbit</module>
+        <module>springBatch</module>
     </modules>
     <packaging>pom</packaging>
 
