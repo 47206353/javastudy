@@ -25,7 +25,10 @@ http://www.springframework.org/schema/batch/spring-batch-3.0.xsd">
     <!-- spring batch自帶的消息读取类，固定长文件的读信息的配置 -->
     <bean:bean id="txtItemReader"
                class="org.springframework.batch.item.file.FlatFileItemReader" scope="step">
-        <bean:property name="resource" value="classpath:/txtfile/user.txt"/>
+       <!-- 静态文件-->
+        <!--<bean:property name="resource" value="classpath:/txtfile/user.txt"/>-->
+        <!-- job parameters允许在运行时动态指定相关参数-->
+        <bean:property name="resource" value="#{jobParameters['InputFilePath']}"/>
         <!--将一行映射为User类-->
         <bean:property name="lineMapper">
             <bean:bean

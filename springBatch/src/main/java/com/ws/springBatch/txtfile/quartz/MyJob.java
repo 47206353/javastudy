@@ -3,10 +3,14 @@ package com.ws.springBatch.txtfile.quartz;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
+import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;
+import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.launch.support.SimpleJobLauncher;
 import org.springframework.batch.core.repository.JobRepository;
+import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.context.ApplicationContext;
+import org.springframework.core.io.Resource;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
@@ -28,8 +32,13 @@ public class MyJob extends QuartzJobBean {
         SimpleJobLauncher launcher = new SimpleJobLauncher();
         launcher.setJobRepository((JobRepository) applicationContext.getBean("jobRepository"));
         launcher.setTaskExecutor(new SimpleAsyncTaskExecutor());
+
         try {
-            launcher.run((org.springframework.batch.core.Job) applicationContext.getBean("helloWorldJob"), new JobParameters());
+            Job myJob = (Job) applicationContext.getBean("helloWorldJob");
+            //通过JobParameter在程序运行期间动态获取文件路径
+            JobParametersBuilder jobParametersBuilder = new JobParametersBuilder();
+            jobParametersBuilder.addString("InputFilePath","/txtfile/user2.txt");
+            launcher.run((myJob) , jobParametersBuilder.toJobParameters());
         } catch (Exception e) {
             e.printStackTrace();
         }
