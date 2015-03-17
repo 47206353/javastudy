@@ -33,7 +33,7 @@
             <!--这里是单轮询服务启动后延时多少时间,开始计时任务,单位ms      -->
         </property>
         <property name="repeatInterval">
-            <value>6000000</value>
+            <value>10000</value>
             <!--这里是调用bgw超时的单轮询每隔多长时间就进行一次计时任务,单位ms    -->
         </property>
     </bean>

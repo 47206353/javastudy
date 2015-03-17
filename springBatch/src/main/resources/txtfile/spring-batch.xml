@@ -12,7 +12,7 @@ http://www.springframework.org/schema/batch/spring-batch-3.0.xsd">
         <step id="messageStep">
             <tasklet>
                 <chunk reader="txtItemReader" processor="messageProcessor" writer="messageWriter"
-                       commit-interval="2"></chunk>
+                       commit-interval="5"></chunk>
             </tasklet>
 
         </step>

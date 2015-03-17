@@ -14,6 +14,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
+import java.util.Date;
 import java.util.Map;
 
 
@@ -37,8 +38,11 @@ public class MyJob extends QuartzJobBean {
             Job myJob = (Job) applicationContext.getBean("helloWorldJob");
             //通过JobParameter在程序运行期间动态获取文件路径
             JobParametersBuilder jobParametersBuilder = new JobParametersBuilder();
-            jobParametersBuilder.addString("InputFilePath","/txtfile/user2.txt");
+            jobParametersBuilder.addDate("data",new Date());
+            jobParametersBuilder.addString("InputFilePath", "/txtfile/user2.txt");
             launcher.run((myJob) , jobParametersBuilder.toJobParameters());
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
