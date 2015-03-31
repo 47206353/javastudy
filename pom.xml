@@ -9,18 +9,18 @@
 
         <module>mybatis</module>
         <module>activemq</module>
-        <module>concurent</module>
         <module>concurrent</module>
         <module>nio</module>
         <module>dubbo</module>
         <module>common</module>
-        <module>transaction</module>
+
         <module>designPattern</module>
         <module>rpc</module>
         <module>lombok</module>
         <module>integeration</module>
         <module>rabbit</module>
         <module>springBatch</module>
+        <module>osgi</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -45,7 +45,6 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-
 
 
         <dependency>
@@ -168,13 +167,11 @@
         </dependency>
 
 
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
         </dependency>
-
 
 
         <dependency>
@@ -194,5 +191,61 @@
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.7.5</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.core</artifactId>
+            <version>4.2.0</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                        </manifest>
+                        <manifestEntries>
+                            <Class-Path>${project.build.finalName}.jar</Class-Path>
+                            <Built-By>Ponder</Built-By>
+                            <Bundle-ManifestVersion>2</Bundle-ManifestVersion>
+                            <Bundle-Name>
+                                ${project.groupId}.${project.artifactId}
+                            </Bundle-Name>
+                            <Bundle-SymbolicName>${project.name}</Bundle-SymbolicName>
+                            <Bundle-Version>${project.version}</Bundle-Version>
+                            <Bundle-Vendor>${project.groupId}</Bundle-Vendor>
+                            <Bundle-Activator>
+                                ${project.groupId}.${project.artifactId}.Activator
+                            </Bundle-Activator>
+                            <Export-Package>
+                                ${project.groupId}.${project.artifactId}.Export
+                            </Export-Package>
+                            <Import-Package>org.osgi.framework</Import-Package>
+                            <Embed-Dependency>*</Embed-Dependency>
+                            <DynamicImport-Package>*</DynamicImport-Package>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
 </project>
