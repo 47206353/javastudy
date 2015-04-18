@@ -9,13 +9,19 @@
 
         <module>mybatis</module>
         <module>activemq</module>
-        <module>concurent</module>
+
         <module>concurrent</module>
         <module>nio</module>
         <module>dubbo</module>
         <module>common</module>
-        <module>transaction</module>
+
         <module>designPattern</module>
+        <module>rpc</module>
+        <module>lombok</module>
+        <module>integeration</module>
+        <module>rabbit</module>
+        <module>springBatch</module>
+        <module>akak</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -162,11 +168,32 @@
             <version>1.6</version>
         </dependency>
 
+
+
         <dependency>
-            <groupId>org.mongodb</groupId>
-            <artifactId>mongo-java-driver</artifactId>
-            <version>2.10.1</version>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
         </dependency>
 
+
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.6.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.5</version>
+        </dependency>
     </dependencies>
 </project>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bean:beans xmlns="http://www.springframework.org/schema/batch"
+            xmlns:bean="http://www.springframework.org/schema/beans"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/batch
+http://www.springframework.org/schema/batch/spring-batch-3.0.xsd">
+
+
+    <job id="helloWorldJob">
+        <step id="messageStep">
+            <tasklet>
+                <chunk reader="txtItemReader" processor="messageProcessor" writer="messageWriter"
+                       commit-interval="5"></chunk>
+            </tasklet>
+
+        </step>
+    </job>
+
+
+<!--   自定义的消息读取类-->
+    <bean:bean id="messageReader" class="com.ws.springBatch.txtfile.batch.MesageReader"></bean:bean>
+
+    <!-- spring batch自帶的消息读取类，固定长文件的读信息的配置 -->
+    <bean:bean id="txtItemReader"
+               class="org.springframework.batch.item.file.FlatFileItemReader" scope="step">
+       <!-- 静态文件-->
+        <!--<bean:property name="resource" value="classpath:/txtfile/user.txt"/>-->
+        <!-- job parameters允许在运行时动态指定相关参数-->
+        <bean:property name="resource" value="#{jobParameters['InputFilePath']}"/>
+        <!--将一行映射为User类-->
+        <bean:property name="lineMapper">
+            <bean:bean
+                    class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+                <!--将一行映射为User类-->
+                <bean:property name="lineTokenizer" ref="lineTokenizer"/>
+                <bean:property name="fieldSetMapper">
+                    <bean:bean
+                            class="org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper">
+                        <bean:property name="prototypeBeanName" value="user"></bean:property>
+                    </bean:bean>
+                </bean:property>
+            </bean:bean>
+        </bean:property>
+    </bean:bean>
+
+    <!--当jod的 commit-interval属性设置大于1的时候，需要设置scope属性，否则每条数据都是最后读取的值。
+    因为如果不设置scope属性，该bean是单例。
+    scope=＂prototype＂此时该bean不再是单例，spring不再管理其生命周期
+    -->
+    <bean:bean id = "user" class="com.ws.springBatch.txtfile.batch.User"  scope="prototype"/>
+
+    <bean:bean id="lineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+        <bean:property name="lineTokenizer" ref="lineTokenizer"/>
+        <bean:property name="fieldSetMapper" ref="fieldSetMapper"/>
+    </bean:bean>
+    <bean:bean id="fieldSetMapper" class="com.ws.springBatch.txtfile.batch.UserMapper"/>
+    <!--将一行映射为User类-->
+    <bean:bean id="lineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
+        <bean:property name="delimiter" value=","/>
+        <bean:property name="names">
+            <bean:list>
+                <bean:value>name</bean:value>
+                <bean:value>age</bean:value>
+            </bean:list>
+        </bean:property>
+    </bean:bean>
+
+
+    <bean:bean id="messageProcessor" class="com.ws.springBatch.txtfile.batch.MessageProcessor"/>
+    <bean:bean id="messageWriter" class="com.ws.springBatch.txtfile.batch.MessageWriter"/>
+
+    <!-- jobLauncher负责batch的启动工作-->
+    <bean:bean id="jobRepository" class="org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean">
+        <bean:property name="transactionManager" ref="transactionManager"/>
+    </bean:bean>
+
+    <!-- transactionManager负责事务的管理操作。-->
+    <bean:bean id="transactionManager"
+               class="org.springframework.batch.support.transaction.ResourcelessTransactionManager"/>
+
+</bean:beans>

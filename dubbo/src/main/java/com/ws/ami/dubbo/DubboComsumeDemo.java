@@ -12,8 +12,15 @@ public class DubboComsumeDemo {
         ApplicationContext factory = new ClassPathXmlApplicationContext(
                 new String[] {"config/consumer.xml"});
 
+
         DemoService demoService = (DemoService) factory.getBean("demoService");
         demoService.sayHello();
 
+
+
+
     }
+
+
+
 }

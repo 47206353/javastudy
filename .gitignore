@@ -1,5 +1,4 @@
-gitwjh.sh
-gitwjhm.sh
+
 target/**/*.jar
 *.war
 *.class
