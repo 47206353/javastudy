@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <property resource="properties/app.properties"/>
+
+
+
+
+
+
+
+
+    <appender name="ssd_info" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>ACCEPT</onMismatch>
+        </filter>
+        <file>c:/hardisktest/info.log</file>
+        <!--<file> ${logRoot}/pcp-info.log</file>-->
+        <encoder>
+            <pattern>%date %level [%thread] [%logger{0}] %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logRoot}/pcp-out%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>500MB</maxFileSize>
+            </TimeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+
+    <appender name="ssd_error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>ACCEPT</onMismatch>
+        </filter>
+        <file>c:/hardisktest/error.log</file>
+        <!--<file> ${logRoot}/pcp-info.log</file>-->
+        <encoder>
+            <pattern>%date %level [%thread] [%logger{0}] %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logRoot}/pcp-out%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>4096MB</maxFileSize>
+            </TimeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+
+    <logger name="com.ws.ami.common.harddisktest.SSDTest" level="INFO" additivity="false">
+        <appender-ref ref="ssd_info"/>
+        <appender-ref ref="ssd_error"/>
+    </logger>
+
+    <appender name="hdd_info" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>ACCEPT</onMismatch>
+        </filter>
+        <file>e:/pcp-info.log</file>
+        <encoder>
+            <pattern>%date %level [%thread] [%logger{0}] %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>d:/pcp-info%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>4096MB</maxFileSize>
+            </TimeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="hdd_error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>ACCEPT</onMismatch>
+        </filter>
+        <file>e:/pcp-error.log</file>
+        <encoder>
+            <pattern>%date %level [%thread] [%logger{0}] %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>d:/pcp-info%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>500MB</maxFileSize>
+            </TimeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+    <logger name="com.ws.ami.common.harddisktest.HDDTest" level="INFO" additivity="false">
+        <appender-ref ref="hdd_info"/>
+        <appender-ref ref="hdd_error"/>
+    </logger>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <root level="INFO">
+        <!--<appender-ref ref="PCPLogFile_INFO" />-->
+        <appender-ref ref="PCPLogFile_ERROR"/>
+ <!--       <appender-ref ref="STDOUT"/>-->
+<!--        <appender-ref ref="ssd_logger"/>-->
+
+    </root>
+</configuration>

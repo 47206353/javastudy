@@ -11,7 +11,7 @@ public class clients {
 
 	final static String host = "127.0.0.1";
 	final static int port = 8080;
-	final static int numberOfConnects = 30000;
+	final static int numberOfConnects = 300;
 	final static ConcurrentHashMap sockets = new ConcurrentHashMap<Integer, Socket>();
 
 	public static void main(String[] args) throws Exception {
